@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#05070f">
+  <meta name="description" content="NEXUS Command Room — به کارخونه ایجنت‌های هوش مصنوعی دستور بده.">
+  <title>NEXUS — اتاق فرماندهی</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ═══ پس‌زمینه‌ی زنده ═══ -->
+  <div class="bg-photo" id="bgPhoto">
+    <div class="bg-photo-inner"></div>
+    <div class="bg-sweep"></div>
+  </div>
+
+  <div class="aurora"></div>
+  <canvas id="particles"></canvas>
+  <div class="grid-floor"></div>
+  <div class="noise"></div>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <header class="topbar">
+    <a class="back-link" href="index.html">→ صفحه اصلی</a>
+    <a class="brand" href="index.html" aria-label="NEXUS">
+      <span class="brand-mark"><i></i><i></i><i></i></span>
+      <span>NEXUS<span class="brand-dot">.</span></span>
+    </a>
+    <span class="live">LIVE</span>
+  </header>
+
+  <main class="cmd-main" id="top">
+
+    <!-- ═══ باکس فرمان ═══ -->
+    <section class="cmd-hero">
+      <div class="eyebrow"><span class="pulse"></span> ایجنت‌ها آنلاین و آماده‌اند</div>
+      <h1>به <em>کارخونه</em> دستور بده</h1>
+      <p>یک جمله بنویس؛ Orchestrator تحلیلش می‌کند، ایجنت متخصص بیدار می‌شود و مراحل کار را همین‌جا زنده تماشا می‌کنی.</p>
+
+      <div class="cmd-box" id="cmdBox">
+        <span class="cmd-icon">❯</span>
+        <input id="cmdInput" placeholder="مثلاً: قیمت بیت‌کوین را تحقیق کن…" autocomplete="off">
+        <button class="cmd-btn" id="cmdBtn">اجرا مأموریت</button>
+      </div>
+      <div class="cmd-status" id="cmdStatus">SYSTEM READY</div>
+
+      <div class="chips">
+        <button class="chip" data-cmd="قیمت بیت‌کوین را تحقیق کن">🔍 تحقیق</button>
+        <button class="chip" data-cmd="این کد را تست کن و باگ‌هایش را پیدا کن">💻 تست کد</button>
+        <button class="chip" data-cmd="تصاویر جدید را تحلیل کن">👁 تحلیل تصویر</button>
+        <button class="chip" data-cmd="امنیت سیستم را بررسی کن">🛡 امنیت</button>
+        <button class="chip" data-cmd="یک گزارش تحلیل جامع بده">📊 گزارش</button>
+      </div>
+
+      <div class="cmd-result" id="cmdResult"></div>
+    </section>
+
+    <!-- ═══ وضعیت زنده ایجنت‌ها ═══ -->
+    <section class="cmd-agents">
+      <div class="cmd-section-head">
+        <h2 class="cmd-h2">وضعیت ایجنت‌ها</h2>
+        <span class="cmd-sub">ایجنتِ در حال کار می‌درخشد ✨</span>
+      </div>
+
+      <div class="agent-live-grid">
+        <article class="agent-mini" data-agent="Orchestrator">
+          <span class="agent-symbol">N</span>
+          <h3>Orchestrator</h3>
+          <span class="status active">ACTIVE</span>
+          <div class="mini-load">Load <b>31%</b></div>
+        </article>
+        <article class="agent-mini" data-agent="Research">
+          <span class="agent-symbol blue">R</span>
+          <h3>Research</h3>
+          <span class="status active">ACTIVE</span>
+          <div class="mini-load">Load <b>54%</b></div>
+        </article>
+        <article class="agent-mini" data-agent="Code">
+          <span class="agent-symbol green">C</span>
+          <h3>Code</h3>
+          <span class="status active">ACTIVE</span>
+          <div class="mini-load">Load <b>48%</b></div>
+        </article>
+        <article class="agent-mini" data-agent="Vision">
+          <span class="agent-symbol amber">V</span>
+          <h3>Vision</h3>
+          <span class="status active">ACTIVE</span>
+          <div class="mini-load">Load <b>27%</b></div>
+        </article>
+        <article class="agent-mini" data-agent="Analyst">
+          <span class="agent-symbol pink">A</span>
+          <h3>Analyst</h3>
+          <span class="status standby">STANDBY</span>
+          <div class="mini-load">Load <b>0%</b></div>
+        </article>
+        <article class="agent-mini" data-agent="Security">
+          <span class="agent-symbol cyan">S</span>
+          <h3>Security</h3>
+          <span class="status active">ACTIVE</span>
+          <div class="mini-load">Load <b>18%</b></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══ فید زنده + راهنما ═══ -->
+    <section class="cmd-feed">
+      <article class="panel activity-panel">
+        <div class="panel-title">
+          <div><span class="live-dot"></span><h3>فعالیت لحظه‌ای</h3></div>
+          <button class="tiny-btn" id="refreshActivity">تازه‌سازی</button>
+        </div>
+        <div class="activity-list" id="activityList">
+          <div class="activity"><span class="activity-icon purple">⌘</span><div><b>Orchestrator</b><p>سیستم آماده به کار است. منتظر فرمان شما…</p></div><time>اکنون</time></div>
+        </div>
+      </article>
+
+      <article class="panel guide-panel">
+        <div class="panel-title"><h3>راهنمای فرمان</h3><span class="muted">کلیدواژه‌ها</span></div>
+        <div class="guide-list">
+          <div class="guide-row"><span class="activity-icon blue">⌁</span><div><b>Research</b><small>تحقیق · سرچ · قیمت · بازار · خبر</small></div></div>
+          <div class="guide-row"><span class="activity-icon green">✓</span><div><b>Code</b><small>کد · برنامه · باگ · تست · تابع</small></div></div>
+          <div class="guide-row"><span class="activity-icon amber">◇</span><div><b>Vision</b><small>عکس · تصویر · سند · اسکن</small></div></div>
+          <div class="guide-row"><span class="activity-icon cyan">◎</span><div><b>Security</b><small>امنیت · هک · ریسک · ترافیک</small></div></div>
+          <div class="guide-row"><span class="activity-icon purple">⌘</span><div><b>Analyst</b><small>گزارش · تحلیل · آمار · شاخص</small></div></div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div><span class="brand-mini">NEXUS.</span> Command Room</div>
+    <a href="index.html">→ بازگشت به صفحه اصلی</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

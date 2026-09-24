@@ -41,6 +41,7 @@
       <a href="#agents">ایجنت‌ها</a>
       <a href="#architecture">معماری</a>
       <a href="#about">درباره پروژه</a>
+      <a href="console.html" class="nav-cta">اتاق فرماندهی ←</a>
     </nav>
 
     <button class="command-btn" id="commandBtn">
@@ -58,7 +59,7 @@
           اجرای Workflowهای چندمرحله‌ای و مشاهده وضعیت سیستم در یک محیط واحد است.
         </p>
         <div class="hero-actions">
-          <a href="#overview" class="btn btn-primary">ورود به داشبورد <span>←</span></a>
+          <a href="console.html" class="btn btn-primary">ورود به اتاق فرماندهی <span>←</span></a>
           <a href="#architecture" class="btn btn-ghost">مشاهده معماری</a>
         </div>
         <div class="hero-meta">
@@ -77,7 +78,6 @@
         <div class="console-body">
           <div class="scanline"></div>
 
-          <!-- خطوط ارتباطی + بسته‌های داده متحرک -->
           <svg class="links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
             <line class="lk" x1="18" y1="20" x2="50" y2="46" vector-effect="non-scaling-stroke"/>
             <line class="lk" x1="82" y1="20" x2="50" y2="46" vector-effect="non-scaling-stroke"/>
@@ -317,10 +317,11 @@
       <div class="modal-head"><span>COMMAND PALETTE</span><button id="closeModal">×</button></div>
       <div class="command-input"><span>⌕</span><input id="commandInput" placeholder="یک فرمان وارد کنید..." autocomplete="off"></div>
       <div class="command-list">
-        <button data-target="#overview"><b>↗</b><span>نمای کلی سیستم</span><kbd>01</kbd></button>
-        <button data-target="#agents"><b>◈</b><span>مشاهده ایجنت‌ها</span><kbd>02</kbd></button>
-        <button data-target="#architecture"><b>⌘</b><span>معماری سیستم</span><kbd>03</kbd></button>
-        <button data-target="#about"><b>✦</b><span>ایده NEXUS</span><kbd>04</kbd></button>
+        <button data-target="console.html"><b>❯</b><span>اتاق فرماندهی — دستور به کارخونه</span><kbd>01</kbd></button>
+        <button data-target="#overview"><b>↗</b><span>نمای کلی سیستم</span><kbd>02</kbd></button>
+        <button data-target="#agents"><b>◈</b><span>مشاهده ایجنت‌ها</span><kbd>03</kbd></button>
+        <button data-target="#architecture"><b>⌘</b><span>معماری سیستم</span><kbd>04</kbd></button>
+        <button data-target="#about"><b>✦</b><span>ایده NEXUS</span><kbd>05</kbd></button>
       </div>
     </div>
   </div>
