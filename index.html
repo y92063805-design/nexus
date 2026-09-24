@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#05070f">
+  <meta name="description" content="NEXUS — یک رابط حرفه‌ای برای مدیریت ایجنت‌های هوش مصنوعی، اتوماسیون و پروژه‌های هوشمند.">
+  <title>NEXUS — AI Command Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ═══ پس‌زمینه‌ی زنده ═══ -->
+  <div class="bg-photo" id="bgPhoto">
+    <div class="bg-photo-inner"></div>
+    <div class="bg-sweep"></div>
+  </div>
+
+  <!-- ═══ لایه‌های افکت پس‌زمینه ═══ -->
+  <div class="aurora"></div>
+  <canvas id="particles"></canvas>
+  <div class="grid-floor"></div>
+  <div class="noise"></div>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+
+  <!-- ═══ کرسر سفارشی ═══ -->
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="NEXUS">
+      <span class="brand-mark"><i></i><i></i><i></i></span>
+      <span>NEXUS<span class="brand-dot">.</span></span>
+    </a>
+
+    <nav>
+      <a href="#overview">نمای کلی</a>
+      <a href="#agents">ایجنت‌ها</a>
+      <a href="#architecture">معماری</a>
+      <a href="#about">درباره پروژه</a>
+    </nav>
+
+    <button class="command-btn" id="commandBtn">
+      <span>⌘</span> فرمان سریع
+    </button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse"></span> سیستم هوشمند آنلاین است</div>
+        <h1>مرکز فرماندهی<br><em>نسل بعدی</em> برای AI Agents</h1>
+        <p>
+          NEXUS یک رابط مفهومی برای هماهنگ‌کردن ایجنت‌های هوش مصنوعی،
+          اجرای Workflowهای چندمرحله‌ای و مشاهده وضعیت سیستم در یک محیط واحد است.
+        </p>
+        <div class="hero-actions">
+          <a href="#overview" class="btn btn-primary">ورود به داشبورد <span>←</span></a>
+          <a href="#architecture" class="btn btn-ghost">مشاهده معماری</a>
+        </div>
+        <div class="hero-meta">
+          <span><b>06</b> Agent فعال</span>
+          <span><b>24</b> Workflow</span>
+          <span><b>99.8%</b> Uptime</span>
+        </div>
+      </div>
+
+      <div class="hero-console">
+        <div class="console-head">
+          <div class="window-dots"><i></i><i></i><i></i></div>
+          <span>nexus://command-center</span>
+          <span class="live">LIVE</span>
+        </div>
+        <div class="console-body">
+          <div class="scanline"></div>
+
+          <!-- خطوط ارتباطی + بسته‌های داده متحرک -->
+          <svg class="links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <line class="lk" x1="18" y1="20" x2="50" y2="46" vector-effect="non-scaling-stroke"/>
+            <line class="lk" x1="82" y1="20" x2="50" y2="46" vector-effect="non-scaling-stroke"/>
+            <line class="lk" x1="18" y1="74" x2="50" y2="46" vector-effect="non-scaling-stroke"/>
+            <line class="lk" x1="82" y1="74" x2="50" y2="46" vector-effect="non-scaling-stroke"/>
+            <circle class="pkt" r="1.6"><animateMotion dur="2.6s" repeatCount="indefinite" path="M18,20 L50,46"/></circle>
+            <circle class="pkt pkt-p" r="1.6"><animateMotion dur="3.4s" begin="1s" repeatCount="indefinite" path="M82,20 L50,46"/></circle>
+            <circle class="pkt pkt-g" r="1.6"><animateMotion dur="3s" begin=".5s" repeatCount="indefinite" path="M18,74 L50,46"/></circle>
+            <circle class="pkt pkt-p2" r="1.6"><animateMotion dur="2.2s" begin="1.4s" repeatCount="indefinite" path="M82,74 L50,46"/></circle>
+          </svg>
+
+          <div class="core">
+            <div class="core-ring ring-1"></div>
+            <div class="core-ring ring-2"></div>
+            <div class="core-ring ring-3"></div>
+            <div class="core-center">N</div>
+          </div>
+          <div class="node node-1"><span></span>RESEARCH</div>
+          <div class="node node-2"><span></span>CODER</div>
+          <div class="node node-3"><span></span>VISION</div>
+          <div class="node node-4"><span></span>ORCHESTRATOR</div>
+          <div class="console-status">
+            <span>COORDINATION</span><strong>OPTIMAL</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard section" id="overview">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">01 / SYSTEM OVERVIEW</span>
+          <h2>نبض سیستم</h2>
+        </div>
+        <span class="timestamp" id="clock">--:--:--</span>
+      </div>
+
+      <div class="metric-grid">
+        <article class="metric-card">
+          <span class="metric-icon">◈</span>
+          <small>درخواست‌های پردازش‌شده</small>
+          <strong id="requests">0</strong>
+          <div class="spark"><span style="height:34%"></span><span style="height:48%"></span><span style="height:43%"></span><span style="height:67%"></span><span style="height:58%"></span><span style="height:83%"></span><span style="height:74%"></span><span style="height:92%"></span></div>
+          <label>+18.4% <i>این هفته</i></label>
+        </article>
+
+        <article class="metric-card">
+          <span class="metric-icon">⌁</span>
+          <small>میانگین زمان پاسخ</small>
+          <strong>184<span class="unit">ms</span></strong>
+          <div class="progress"><span style="width:82%"></span></div>
+          <label>82% <i>ظرفیت بهینه</i></label>
+        </article>
+
+        <article class="metric-card">
+          <span class="metric-icon">◎</span>
+          <small>هزینه تخمینی عملیات</small>
+          <strong>$24.18</strong>
+          <div class="mini-bars"><i style="height:40%"></i><i style="height:64%"></i><i style="height:48%"></i><i style="height:78%"></i><i style="height:59%"></i><i style="height:35%"></i></div>
+          <label>−12.7% <i>بهینه‌سازی شده</i></label>
+        </article>
+
+        <article class="metric-card">
+          <span class="metric-icon">✦</span>
+          <small>امتیاز سلامت سیستم</small>
+          <strong>98.7<span class="unit">/100</span></strong>
+          <div class="health"><span></span><span></span><span></span><span></span><span></span></div>
+          <label>EXCELLENT <i>پایدار</i></label>
+        </article>
+      </div>
+
+      <div class="activity-grid">
+        <article class="panel activity-panel">
+          <div class="panel-title">
+            <div><span class="live-dot"></span><h3>فعالیت لحظه‌ای</h3></div>
+            <button class="tiny-btn" id="refreshActivity">تازه‌سازی</button>
+          </div>
+          <div class="activity-list" id="activityList">
+            <div class="activity"><span class="activity-icon purple">⌘</span><div><b>Orchestrator</b><p>Workflow «Market Intelligence» را آغاز کرد.</p></div><time>اکنون</time></div>
+            <div class="activity"><span class="activity-icon blue">⌁</span><div><b>Research Agent</b><p>۱۲ منبع جدید برای تحلیل دریافت شد.</p></div><time>۲۱ث</time></div>
+            <div class="activity"><span class="activity-icon green">✓</span><div><b>Code Agent</b><p>Build نسخه 2.4.1 با موفقیت تکمیل شد.</p></div><time>۵۸ث</time></div>
+            <div class="activity"><span class="activity-icon amber">◇</span><div><b>Vision Agent</b><p>تحلیل تصویر با confidence برابر ۹۷٪ انجام شد.</p></div><time>۱د</time></div>
+          </div>
+        </article>
+
+        <article class="panel workload-panel">
+          <div class="panel-title"><h3>بار سیستم</h3><span class="muted">۲۴ ساعت اخیر</span></div>
+          <div class="chart">
+            <div class="chart-labels"><span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span></div>
+            <div class="chart-area">
+              <div class="gridline g1"></div><div class="gridline g2"></div><div class="gridline g3"></div><div class="gridline g4"></div>
+              <svg viewBox="0 0 700 260" preserveAspectRatio="none" aria-label="نمودار بار سیستم">
+                <defs>
+                  <linearGradient id="fill" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#7c5cff" stop-opacity=".34"/>
+                    <stop offset="100%" stop-color="#7c5cff" stop-opacity="0"/>
+                  </linearGradient>
+                  <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#7c5cff"/>
+                    <stop offset="100%" stop-color="#22d3ee"/>
+                  </linearGradient>
+                </defs>
+                <path class="area" d="M0,215 C50,205 65,170 110,183 S170,125 215,152 S265,210 310,135 S370,75 410,118 S470,158 505,95 S555,110 590,72 S650,90 700,38 L700,260 L0,260 Z"></path>
+                <path class="line" d="M0,215 C50,205 65,170 110,183 S170,125 215,152 S265,210 310,135 S370,75 410,118 S470,158 505,95 S555,110 590,72 S650,90 700,38"></path>
+                <circle class="end-dot" cx="700" cy="38" r="4"/>
+                <circle class="end-ring" cx="700" cy="38" r="4"/>
+              </svg>
+              <div class="xlabels"><span>00</span><span>04</span><span>08</span><span>12</span><span>16</span><span>20</span><span>24</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="agents section" id="agents">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">02 / AGENT NETWORK</span>
+          <h2>شبکه ایجنت‌ها</h2>
+        </div>
+        <span class="system-chip">6 NODES / 1 CORE</span>
+      </div>
+
+      <div class="agent-grid">
+        <article class="agent-card featured">
+          <div class="agent-top"><span class="agent-symbol">N</span><span class="status active">ACTIVE</span></div>
+          <h3>Orchestrator</h3>
+          <p>مغز هماهنگ‌کننده؛ وظایف را به ایجنت مناسب می‌سپارد و خروجی‌ها را ترکیب می‌کند.</p>
+          <div class="agent-tags"><span>Planning</span><span>Routing</span><span>Memory</span></div>
+          <div class="agent-foot"><span>Latency <b>42ms</b></span><span>Load <b>31%</b></span></div>
+        </article>
+
+        <article class="agent-card">
+          <div class="agent-top"><span class="agent-symbol blue">R</span><span class="status active">ACTIVE</span></div>
+          <h3>Research</h3>
+          <p>جمع‌آوری، دسته‌بندی و تحلیل اطلاعات برای تصمیم‌گیری آگاهانه.</p>
+          <div class="agent-tags"><span>Search</span><span>RAG</span><span>Sources</span></div>
+          <div class="agent-foot"><span>Latency <b>91ms</b></span><span>Load <b>54%</b></span></div>
+        </article>
+
+        <article class="agent-card">
+          <div class="agent-top"><span class="agent-symbol green">C</span><span class="status active">ACTIVE</span></div>
+          <h3>Code</h3>
+          <p>تحلیل، تولید و بررسی کد برای چرخه سریع توسعه نرم‌افزار.</p>
+          <div class="agent-tags"><span>Code</span><span>Tests</span><span>Review</span></div>
+          <div class="agent-foot"><span>Latency <b>76ms</b></span><span>Load <b>48%</b></span></div>
+        </article>
+
+        <article class="agent-card">
+          <div class="agent-top"><span class="agent-symbol amber">V</span><span class="status active">ACTIVE</span></div>
+          <h3>Vision</h3>
+          <p>درک تصاویر و اسناد و استخراج داده ساختاریافته از ورودی‌های بصری.</p>
+          <div class="agent-tags"><span>OCR</span><span>Vision</span><span>Parse</span></div>
+          <div class="agent-foot"><span>Latency <b>128ms</b></span><span>Load <b>27%</b></span></div>
+        </article>
+
+        <article class="agent-card">
+          <div class="agent-top"><span class="agent-symbol pink">A</span><span class="status standby">STANDBY</span></div>
+          <h3>Analyst</h3>
+          <p>تبدیل داده‌های خام به بینش، شاخص و گزارش قابل استفاده.</p>
+          <div class="agent-tags"><span>Analytics</span><span>Reports</span><span>KPIs</span></div>
+          <div class="agent-foot"><span>Latency <b>—</b></span><span>Load <b>0%</b></span></div>
+        </article>
+
+        <article class="agent-card">
+          <div class="agent-top"><span class="agent-symbol cyan">S</span><span class="status active">ACTIVE</span></div>
+          <h3>Security</h3>
+          <p>پایش رخدادها و بررسی الگوهای غیرعادی در جریان عملیات.</p>
+          <div class="agent-tags"><span>Guard</span><span>Audit</span><span>Risk</span></div>
+          <div class="agent-foot"><span>Latency <b>63ms</b></span><span>Load <b>18%</b></span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="architecture section" id="architecture">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">03 / SYSTEM ARCHITECTURE</span>
+          <h2>معماری NEXUS</h2>
+        </div>
+        <span class="muted">Conceptual architecture</span>
+      </div>
+
+      <div class="architecture-board">
+        <div class="arch-layer layer-input">
+          <span class="layer-label">INPUT</span>
+          <div class="arch-box"><b>USER</b><small>Text / Voice / Files</small></div>
+          <div class="arch-box"><b>EVENTS</b><small>Webhooks / API</small></div>
+        </div>
+        <div class="connector">↓</div>
+        <div class="arch-layer layer-core">
+          <span class="layer-label">ORCHESTRATION</span>
+          <div class="arch-box main"><b>NEXUS CORE</b><small>Planner · Router · Memory</small></div>
+        </div>
+        <div class="connector">↓</div>
+        <div class="arch-layer layer-agents">
+          <span class="layer-label">AGENTS</span>
+          <div class="arch-box"><b>RESEARCH</b><small>Retrieve → Verify</small></div>
+          <div class="arch-box"><b>CODE</b><small>Build → Test</small></div>
+          <div class="arch-box"><b>VISION</b><small>Read → Extract</small></div>
+          <div class="arch-box"><b>SECURITY</b><small>Detect → Guard</small></div>
+        </div>
+        <div class="connector">↓</div>
+        <div class="arch-layer layer-output">
+          <span class="layer-label">OUTPUT</span>
+          <div class="arch-box"><b>RESULT</b><small>Answer / Action / Report</small></div>
+          <div class="arch-box"><b>OBSERVABILITY</b><small>Logs / Metrics / Traces</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="manifesto section" id="about">
+      <div class="manifesto-inner">
+        <span class="section-kicker">04 / THE IDEA</span>
+        <h2>AI نباید فقط<br><em>پاسخ بدهد.</em></h2>
+        <p>
+          ایده NEXUS این است که هوش مصنوعی را از یک پنجره چت ساده به یک
+          سیستم قابل مشاهده، قابل هماهنگی و قابل توسعه تبدیل کند؛ جایی که
+          چند عامل تخصصی برای رسیدن به یک هدف مشترک با هم کار می‌کنند.
+        </p>
+        <div class="principles">
+          <span>01 — Modular</span><span>02 — Observable</span><span>03 — Agentic</span><span>04 — Extensible</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div><span class="brand-mini">NEXUS.</span> AI Command Center</div>
+    <span>Designed as a concept / Open for collaboration</span>
+    <a href="#top">↑ بازگشت به بالا</a>
+  </footer>
+
+  <div class="command-modal" id="commandModal" aria-hidden="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal">
+      <div class="modal-head"><span>COMMAND PALETTE</span><button id="closeModal">×</button></div>
+      <div class="command-input"><span>⌕</span><input id="commandInput" placeholder="یک فرمان وارد کنید..." autocomplete="off"></div>
+      <div class="command-list">
+        <button data-target="#overview"><b>↗</b><span>نمای کلی سیستم</span><kbd>01</kbd></button>
+        <button data-target="#agents"><b>◈</b><span>مشاهده ایجنت‌ها</span><kbd>02</kbd></button>
+        <button data-target="#architecture"><b>⌘</b><span>معماری سیستم</span><kbd>03</kbd></button>
+        <button data-target="#about"><b>✦</b><span>ایده NEXUS</span><kbd>04</kbd></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
